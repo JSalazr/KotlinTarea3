@@ -12,7 +12,7 @@ import java.io.ByteArrayOutputStream;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.awt.image.Raster;
-import java.awt.Color
+import java.awt.Color;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -200,7 +200,12 @@ class ejercicio3 : HttpHandler {
         var new_img: ByteArray = baos.toByteArray();
         gray_img = Base64.getEncoder().encodeToString(new_img);
       }catch(e: IllegalArgumentException){
-        println("No sirve esto");
+          var err = "{\"error\": \"Intente de nuevo\"}";
+          response = err.toByteArray();
+          t.getResponseHeaders().add("content-type", "json");
+          t.sendResponseHeaders(500, response.size.toLong());
+          os.write(response);
+          os.close();
       }
       var json: String = String();
       var name = nombre.split(".");
@@ -264,7 +269,12 @@ class ejercicio4 : HttpHandler {
         var new_img: ByteArray = baos.toByteArray();
         small_img = Base64.getEncoder().encodeToString(new_img);
       }catch(e: IllegalArgumentException){
-        println("No sirve esto");
+          var err = "{\"error\": \"Intente de nuevo\"}";
+          response = err.toByteArray();
+          t.getResponseHeaders().add("content-type", "json");
+          t.sendResponseHeaders(500, response.size.toLong());
+          os.write(response);
+          os.close();
       }
       var json: String = String();
       var name = nombre.split(".");
