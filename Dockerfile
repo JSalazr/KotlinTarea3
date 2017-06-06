@@ -1,10 +1,7 @@
-FROM python:3
+FROM java:8
 
-RUN git clone https://github.com/JSalazr/PythonTarea2.git
-RUN pip install flask
-RUN pip install googlemaps
-RUN pip install Image
+RUN git clone https://github.com/JSalazr/KotlinTarea3
 
-CMD cd /PythonTarea2 && python Tarea2.py
+CMD cd /KotlinTarea3 && java -jar idk.jar
 
 EXPOSE 8080
